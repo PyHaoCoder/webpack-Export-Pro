@@ -1,4 +1,4 @@
-# WebPack自动导出模块工具
+# WebPack自动导出模块工具V2.0
 
 将WebPack打包所调用的模块一键导出，返回简化后的WebPack代码
 
