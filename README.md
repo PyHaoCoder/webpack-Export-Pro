@@ -2,7 +2,7 @@
 
 将WebPack打包所调用的模块一键导出，返回简化后的WebPack代码
 
-GitHub：https://github.com/PyHaoCoder/webpack-export-tool
+GitHub：https://github.com/PyHaoCoder/webpack-Export-Pro
 
 ## 简介
 
