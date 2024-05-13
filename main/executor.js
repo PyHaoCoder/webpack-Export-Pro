@@ -24,7 +24,7 @@ function ed(tt, te, tr, ti) {
         tp = [ta, tf, tu, false, tc].filter(Boolean).join("+");
     return {
         source: tp,
-        signature: export_func(1514)['ZP'](ty(tp))
+        signature: zr(1514)['ZP'](ty(tp))
     };
 }
 
