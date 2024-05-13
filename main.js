@@ -28,7 +28,7 @@ proxyCode = fs.readFileSync(__dirname + '/main/proxy.js', {encoding: 'utf-8'})
 
 
 // 配置信息
-execFuncName = 'n'  // 执行器中调用加载器的函数名
+execFuncName = 'zr'  // 执行器中调用加载器的函数名
 bootProxy = true  // 是否启动环境代理模式
 
 
@@ -45,13 +45,15 @@ var modulesAst = parser.parse(modulesCode)
 var executorAst = parser.parse(executorCode)
 
 // 定位加载器自执行函数体和参数节点
-let loaderBody, loaderArguments;
+let loaderBody, loaderArguments,loaderParams;
 if (loaderAst.program.body[0].expression.type === 'UnaryExpression') {
     loaderBody = loaderAst.program.body[0].expression.argument.callee.body.body
     loaderArguments = loaderAst.program.body[0].expression.argument.arguments
+    loaderParams = loaderAst.program.body[0].expression.argument.callee.params
 } else {
     loaderBody = loaderAst.program.body[0].expression.callee.body.body
     loaderArguments = loaderAst.program.body[0].expression.arguments
+    loaderParams = loaderAst.program.body[0].expression.callee.params
 }
 
 // 遍历和删除自执行函数体中调用方法的节点
@@ -77,9 +79,8 @@ traverse(loaderAst, {
         let {object, property} = body.body[length - 1].argument.expressions[0].callee.object
 
         // 如果自执行函数没有参数，则添加模块对象名称
-        let {params} = loaderAst.program.body[0].expression.argument.callee
-        if (params.length === 0) {
-            params.push(types.identifier(object.name))
+        if (loaderParams.length === 0) {
+            loaderParams.push(types.identifier(object.name))
         }
 
         // 创建吐模块节点，不使用的话注释代码
