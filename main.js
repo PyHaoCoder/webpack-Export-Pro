@@ -28,7 +28,7 @@ proxyCode = fs.readFileSync(__dirname + '/main/proxy.js', {encoding: 'utf-8'})
 
 
 // 配置信息
-execFuncName = 'zr'  // 执行器中调用加载器的函数名
+execFuncName = 'tr'  // 执行器中调用加载器的函数名
 bootProxy = true  // 是否启动环境代理模式
 
 
